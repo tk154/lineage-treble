@@ -13,12 +13,19 @@ update_my_repo() {
     git remote | grep -q "upstream" || \
         git remote add upstream "$upstream_url"
 
-    git fetch upstream
-    git rebase upstream/"$branch"
-    git push --force-with-lease
+    if [ -n "$(git fetch upstream 2>&1)" ]; then
+        git rebase upstream/"$branch"
+        git push --force-with-lease
+
+        cd ..
+
+        git add "$repo"
+        git commit -m "Update $repo"
+    else
+        cd ..
+    fi
 
     echo ""
-    cd ..
 }
 
 update_my_repos() {
@@ -30,6 +37,8 @@ update_my_repos() {
 
     update_my_repo "vendor_hardware_overlay" "pie" \
         "https://github.com/TrebleDroid/vendor_hardware_overlay.git"
+
+    git push
 }
 
 init_lineage_repo() {
