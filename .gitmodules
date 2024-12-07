@@ -1,0 +1,9 @@
+[submodule "lineage_build_unified"]
+	path = lineage_build_unified
+	url = git@github.com:tk154/lineage_build_unified.git
+[submodule "lineage_patches_unified"]
+	path = lineage_patches_unified
+	url = git@github.com:tk154/lineage_patches_unified.git
+[submodule "vendor_hardware_overlay"]
+	path = vendor_hardware_overlay
+	url = git@github.com:tk154/vendor_hardware_overlay.git
